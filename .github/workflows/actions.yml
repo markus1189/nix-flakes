@@ -17,10 +17,11 @@ jobs:
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
-    - name: perform flake update
+    - name: perform flake update for amplify
       run: |
         nix flake update
         nix build
+      working-directory: ./amplify
     - run: |
         git add .
         git commit -m "Flake Update" && git push origin || echo "nothing to do"
