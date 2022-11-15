@@ -5,8 +5,9 @@
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       amplify = pkgs.callPackage ./amplify-cli.nix { };
-    in {
+    in rec {
+      packages.x86_64-linux.default = amplify;
       devShells.x86_64-linux.default =
-        pkgs.mkShell { buildInputs = with pkgs; [ amplify nodejs-18_x ]; };
+        pkgs.mkShell { buildInputs = [ packages.x86_64-linux.default ]; };
     };
 }
