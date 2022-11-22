@@ -12,14 +12,14 @@
             builtins.elem (nixpkgs.lib.getName pkg) [ "vscode" "teams" ];
         };
       };
-      pyPkgs = pkgs.python38Packages;
+      pyPkgs = pkgs.python39Packages;
     in {
       devShells.x86_64-linux.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           nodejs-18_x
           vscode
           teams
-          python38
+          python39
           pyPkgs.pip
           pyPkgs.autopep8
           pipenv
