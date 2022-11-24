@@ -13,7 +13,8 @@
         };
       };
       pyPkgs = pkgs.python39Packages;
-    in {
+    in rec {
+      packages.x86_64-linux.default = devShells.x86_64-linux.default;
       devShells.x86_64-linux.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           nodejs-18_x
