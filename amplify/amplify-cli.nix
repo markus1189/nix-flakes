@@ -1,12 +1,12 @@
 { stdenv, lib, fetchurl }:
 stdenv.mkDerivation rec {
   pname = "amplify-cli";
-  version = "10.4.0";
+  version = "10.5.1";
 
   src = fetchurl {
     url =
       "https://github.com/aws-amplify/amplify-cli/releases/download/v${version}/amplify-pkg-linux.tgz";
-    hash = "sha256-VNq4sry+n4HRljYYdah2Drrc9SO/FyfywvbZANEfoSk=";
+    hash = "sha256-CsGZ6f8GBj3eD5Y2LcOW/mnp5AvRELa5btheDKAKv3M=";
   };
 
   unpackPhase = ''
