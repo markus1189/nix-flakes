@@ -25,6 +25,7 @@
           pyPkgs.autopep8
           pipenv
           glab
+          nodePackages.serverless
         ];
       };
     };
