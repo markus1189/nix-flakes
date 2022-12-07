@@ -8,6 +8,7 @@
       let pkgs = nixpkgs.legacyPackages.${system};
           myWine = pkgs.wineWowPackages.stagingFull;
       in rec {
+        default = devShell;
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             myWine
