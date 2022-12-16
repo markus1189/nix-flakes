@@ -1,25 +1,19 @@
 {
-  description = "A very basic flake";
+  inputs = { nixpkgs.url = "github:nixos/nixpkgs"; };
 
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  outputs = { self, nixpkgs, ... }:
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      myWine = pkgs.wineWowPackages.stagingFull;
+    in rec {
+      packages.x86_64-linux.default = devShells.x86_64-linux.default;
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        buildInputs = with pkgs; [ myWine winetricks samba ];
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
-          myWine = pkgs.wineWowPackages.stagingFull;
-      in rec {
-        default = devShell;
-        devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            myWine
-            winetricks
-            samba
-          ];
-
-          shellHook = ''
-            alias s="make start"
-            alias e="make stop"
-          '';
-        };
-      });
+        shellHook = ''
+          alias s="make start"
+          alias e="make stop"
+        '';
+      };
+    };
 }
