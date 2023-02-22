@@ -25,14 +25,6 @@ jobs:
     - run: |
         git add .
         git commit -m "Flake Update: Amplify" && git push origin || echo "nothing to do"
-    - name: perform flake update for project pw
-      run: |
-        nix flake update
-        nix build
-      working-directory: ./projects/pw
-    - run: |
-        git add .
-        git commit -m "Flake Update: Pw" && git push origin || echo "nothing to do"
     - name: perform flake update for zwift
       run: |
         nix flake update
